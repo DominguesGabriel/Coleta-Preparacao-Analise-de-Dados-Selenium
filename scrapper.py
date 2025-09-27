@@ -27,7 +27,6 @@ class Serie:
     popularidade: Optional[int]
 
 def extrair_anos(periodo_str):
-    # Garante que estamos lidando com um hífen normal para facilitar
     partes = periodo_str.strip().replace("–", "-").split('-')
     
     anoEstreia = None

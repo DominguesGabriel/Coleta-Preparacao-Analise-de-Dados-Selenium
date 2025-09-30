@@ -1,9 +1,11 @@
 import json
 import re
 from dataclasses import dataclass
+from time import time
 from typing import List, Optional, TypedDict
 from selenium import webdriver
 from selenium.webdriver.common.by import By
+from selenium.webdriver.support.ui import WebDriverWait
 
 class AtorInfo(TypedDict):
     nome: str
@@ -97,8 +99,16 @@ def cria_serie(imdb_li_tag):
         return None
 
 driver = webdriver.Chrome()
-driver.get("https://www.imdb.com/pt/chart/toptv/")
+#driver.get("https://www.imdb.com/pt/chart/toptv/")
+driver.get("https://www.imdb.com/") # Página inicial do IMDb
 driver.maximize_window()
+menu = driver.find_element(By.XPATH, r"//*[@id='imdbHeader-navDrawerOpen']")
+menu.click()
+#driver.find_element(By.LINK_TEXT, r'As 250 séries mais bem avaliadas').click()
+#driver.find_element(By.XPATH, r'//*[@id="imdbHeader-navDrawerOpen"]').click() # Clica no menu
+#WebDriverWait(driver, 10).until(lambda d: d.find_element(By.XPATH, r'//*[@id="imdbHeader"]/div/aside[1]/div/div[2]/div/div[2]/div[1]/span/div/div/ul/a[2]'))
+temp = driver.find_element(By.XPATH, r'//*[@id="imdbHeader"]/div/aside[1]/div/div[2]/div/div[2]/div[1]/span/div/div/ul/a[2]')
+temp.click()
 
 tag_ul = driver.find_element(By.XPATH, r'//*[@id="__next"]/main/div/div[3]/section/div/div[2]/div/ul') # Encontra a lista de séries
 lista_series_tags = tag_ul.find_elements(By.TAG_NAME, "li") # Pega todas as tags <li> dentro da lista

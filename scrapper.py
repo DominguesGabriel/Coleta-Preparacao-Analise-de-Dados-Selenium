@@ -104,9 +104,6 @@ driver.get("https://www.imdb.com/") # Página inicial do IMDb
 driver.maximize_window()
 menu = driver.find_element(By.XPATH, r"//*[@id='imdbHeader-navDrawerOpen']")
 menu.click()
-#driver.find_element(By.LINK_TEXT, r'As 250 séries mais bem avaliadas').click()
-#driver.find_element(By.XPATH, r'//*[@id="imdbHeader-navDrawerOpen"]').click() # Clica no menu
-#WebDriverWait(driver, 10).until(lambda d: d.find_element(By.XPATH, r'//*[@id="imdbHeader"]/div/aside[1]/div/div[2]/div/div[2]/div[1]/span/div/div/ul/a[2]'))
 temp = driver.find_element(By.XPATH, r'//*[@id="imdbHeader"]/div/aside[1]/div/div[2]/div/div[2]/div[1]/span/div/div/ul/a[2]')
 temp.click()
 
